@@ -11,7 +11,7 @@ import '../../../styles/RenderLandingPage.less';
 import { Button } from 'antd';
 import { useHistory } from 'react-router-dom';
 // for the purposes of testing PageNav
-// import PageNav from '../../common/PageNav';
+import PageNav from '../../common/PageNav';
 
 function RenderLandingPage(props) {
   const scrollToTop = () => {
@@ -68,15 +68,17 @@ function RenderLandingPage(props) {
           style={{ backgroundColor: '#404C4A', color: '#FFFFFF' }}
           onClick={() => history.push('/graphs')}
         >
-          View the Data
+          <span>View the Data</span>
         </Button>
-        <Button
-          type="default"
-          style={{ backgroundColor: '#404C4A', color: '#FFFFFF' }}
-          onClick={() => history.push('/graphs')}
-        >
-          Download the Data
-        </Button>
+
+        <a href="https://humanrightsfirst.org/wp-content/uploads/2022/10/COW2021001887-I589Data.csv">
+          <Button
+            type="default"
+            style={{ backgroundColor: '#404C4A', color: '#FFFFFF' }}
+          >
+            <span>Download the Data</span>
+          </Button>
+        </a>
       </div>
 
       <div className="middle-section">
@@ -108,7 +110,7 @@ function RenderLandingPage(props) {
           <h1>6x Lower</h1>
         </div>
 
-        <div className="bottom-section">
+        <div className="bottom-section-header-two">
           <p>
             By the end of the Trump administration, the average asylum office
             grant rate had fallen 36 percent from an average of 44 percent in
@@ -123,6 +125,17 @@ function RenderLandingPage(props) {
             average grant rate was six times lower than the San Francisco asylum
             office.
           </p>
+        </div>
+
+        <div className="read-more-data-btn-container">
+          <a href="https://humanrightsfirst.org/library/uscis-records-reveal-systemic-disparities-in-asylum-decisions/">
+            <Button
+              type="default"
+              style={{ backgroundColor: '#404C4A', color: '#FFFFFF' }}
+            >
+              <span>Read More</span>
+            </Button>
+          </a>
         </div>
 
         <p onClick={() => scrollToTop()} className="back-to-top">
