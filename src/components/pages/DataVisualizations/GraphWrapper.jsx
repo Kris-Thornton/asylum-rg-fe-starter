@@ -72,10 +72,12 @@ function GraphWrapper(props) {
                                    -- Mack 
     
     */
+    axios.get(' https://hrf-asylum-be-b.herokuapp.com/cases');
+    console.log('initial request working');
 
     if (office === 'all' || !office) {
       axios
-        .get(process.env.REACT_APP_API_URI, {
+        .get('https://hrf-asylum-be-b.herokuapp.com/cases/fiscalSummary', {
           // mock URL, can be simply replaced by `${Real_Production_URL}/summary` in prod!
           params: {
             from: years[0],
@@ -84,13 +86,16 @@ function GraphWrapper(props) {
         })
         .then(result => {
           stateSettingCallback(view, office, test_data); // <-- `test_data` here can be simply replaced by `result.data` in prod!
+
+          console.log(result.data.yearResults);
         })
         .catch(err => {
           console.error(err);
+          console.log('not working');
         });
     } else {
       axios
-        .get(process.env.REACT_APP_API_URI, {
+        .get('https://hrf-asylum-be-b.herokuapp.com/cases/citizenshipSummary', {
           // mock URL, can be simply replaced by `${Real_Production_URL}/summary` in prod!
           params: {
             from: years[0],
@@ -99,7 +104,7 @@ function GraphWrapper(props) {
           },
         })
         .then(result => {
-          stateSettingCallback(view, office, test_data); // <-- `test_data` here can be simply replaced by `result.data` in prod!
+          stateSettingCallback(view, office, result.data); // <-- `test_data` here can be simply replaced by `result.data` in prod!
         })
         .catch(err => {
           console.error(err);
