@@ -1,16 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
+
+import axios from 'axios';
+
 import CitizenshipMapAll from './Graphs/CitizenshipMapAll';
 import CitizenshipMapSingleOffice from './Graphs/CitizenshipMapSingleOffice';
 import TimeSeriesAll from './Graphs/TimeSeriesAll';
 import OfficeHeatMap from './Graphs/OfficeHeatMap';
 import TimeSeriesSingleOffice from './Graphs/TimeSeriesSingleOffice';
+
 import YearLimitsSelect from './YearLimitsSelect';
 import ViewSelect from './ViewSelect';
-import axios from 'axios';
+
 import { resetVisualizationQuery } from '../../../state/actionCreators';
+
 import test_data from '../../../data/test_data.json';
+
 import { colors } from '../../../styles/data_vis_colors';
 import ScrollToTopOnMount from '../../../utils/scrollToTopOnMount';
 
@@ -50,67 +56,33 @@ function GraphWrapper(props) {
         break;
     }
   }
-  function updateStateWithNewData(years, view, office, stateSettingCallback) {
-    /*
-          _                                                                             _
-        |                                                                                 |
-        |   Example request for once the `/summary` endpoint is up and running:           |
-        |                                                                                 |
-        |     `${url}/summary?to=2022&from=2015&office=ZLA`                               |
-        |                                                                                 |
-        |     so in axios we will say:                                                    |
-        |                                                                                 |     
-        |       axios.get(`${url}/summary`, {                                             |
-        |         params: {                                                               |
-        |           from: <year_start>,                                                   |
-        |           to: <year_end>,                                                       |
-        |           office: <office>,       [ <-- this one is optional! when    ]         |
-        |         },                        [ querying by `all offices` there's ]         |
-        |       })                          [ no `office` param in the query    ]         |
-        |                                                                                 |
-          _                                                                             _
-                                   -- Mack 
-    
-    */
-    axios.get(' https://hrf-asylum-be-b.herokuapp.com/cases');
-    console.log('initial request working');
 
-    if (office === 'all' || !office) {
-      axios
-        .get('https://hrf-asylum-be-b.herokuapp.com/cases/fiscalSummary', {
-          // mock URL, can be simply replaced by `${Real_Production_URL}/summary` in prod!
-          params: {
-            from: years[0],
-            to: years[1],
-          },
-        })
-        .then(result => {
-          stateSettingCallback(view, office, test_data); // <-- `test_data` here can be simply replaced by `result.data` in prod!
+  async function asylumData(dataType) {
+    const response = await axios.get(
+      `https://hrf-asylum-be-b.herokuapp.com/cases/${dataType}`
+    );
+    console.log(response.data);
+    return response.data;
+  }
 
-          console.log(result.data.yearResults);
-        })
-        .catch(err => {
-          console.error(err);
-          console.log('not working');
-        });
-    } else {
-      axios
-        .get('https://hrf-asylum-be-b.herokuapp.com/cases/citizenshipSummary', {
-          // mock URL, can be simply replaced by `${Real_Production_URL}/summary` in prod!
-          params: {
-            from: years[0],
-            to: years[1],
-            office: office,
-          },
-        })
-        .then(result => {
-          stateSettingCallback(view, office, result.data); // <-- `test_data` here can be simply replaced by `result.data` in prod!
-        })
-        .catch(err => {
-          console.error(err);
-        });
+  // Created a function to access the main API link while passing in the dataType param
+  // that endpoints can be used in the callback below.
+
+  async function updateStateWithNewData(stateSettingCallback) {
+    try {
+      const [fiscalData, citizenshipData] = await Promise.all([
+        asylumData('fiscalSummary'),
+        asylumData('citizenshipSummary'),
+      ]);
+
+      stateSettingCallback([
+        { ...fiscalData, citizenshipResults: citizenshipData },
+      ]);
+    } catch (error) {
+      console.error('Error:', error);
     }
   }
+
   const clearQuery = (view, office) => {
     dispatch(resetVisualizationQuery(view, office));
   };
@@ -149,4 +121,4 @@ function GraphWrapper(props) {
   );
 }
 
-export default connect()(GraphWrapper);
+export default connect(null, {})(GraphWrapper);

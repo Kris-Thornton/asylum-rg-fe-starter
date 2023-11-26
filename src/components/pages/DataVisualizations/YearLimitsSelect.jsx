@@ -63,7 +63,10 @@ function YearLimitsSelect(props) {
   //       e.target.value
   //     ));
   // };
-  const stateSettingFn = (view, office, data) => {
+
+  // Here we make sure to take out the view, office as it is not needed in the new structure in the GraphWrapper file. If left, it will create an error in line 69 param section.
+
+  const stateSettingFn = data => {
     const plotlyReadyData = rawApiDataToPlotlyReadyInfo(view, office, data);
     dispatch(setVisualizationData(view, office, plotlyReadyData));
   };
@@ -76,7 +79,9 @@ function YearLimitsSelect(props) {
   }, 10);
 
   useEffect(() => {
-    updateStateWithNewData(years, view, office, stateSettingFn);
+    // Here we make sure to take out the view, office and years as it is not needed in the new structure in the GraphWrapper file. If left, it will create an error in line 85 param.
+
+    updateStateWithNewData(stateSettingFn);
   });
 
   return (

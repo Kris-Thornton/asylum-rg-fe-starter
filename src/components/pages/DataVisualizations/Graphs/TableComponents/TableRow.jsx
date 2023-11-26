@@ -6,6 +6,7 @@ function TableRow(props) {
   const { columns, row, tableWidth, rowHeight } = props;
   // row should be an object with keys for each column here;
   // columns should be an array
+
   return (
     <div
       className="table-row"
