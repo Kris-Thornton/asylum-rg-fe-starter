@@ -57,9 +57,10 @@ function CitizenshipMapAll(props) {
   const columnsForTable = [
     'Citizenship',
     'Total Cases',
-    '% Granted',
-    '% Admin Close / Dismissal',
-    '% Denied',
+    'Grants',
+    'Admin Close / Dismissal',
+    'Denied',
+    'Granted Rate',
   ];
 
   return (

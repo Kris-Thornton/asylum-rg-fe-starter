@@ -160,10 +160,12 @@ const rawApiDataToPlotlyReadyInfo = (view, office, data) => {
           rowItem = {
             Citizenship: item.citizenship,
             'Total Cases': item.totalCases,
-            '% Granted': Number(item.granted).toFixed(2),
-            '% Admin Close / Dismissal': Number(item.adminClosed).toFixed(2),
-            '% Denied': Number(item.denied).toFixed(2),
+            Grants: item.totalGranted,
+            Denied: item.denied,
+            'Admin Close / Dismissal': item.adminClosed,
+            'Granted Rate': Number(item.granted).toFixed(2),
           };
+
           rowsForTable.push(rowItem);
         }
         const countryGrantRateObj = {
