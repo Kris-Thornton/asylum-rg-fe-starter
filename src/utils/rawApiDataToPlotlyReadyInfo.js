@@ -67,11 +67,12 @@ const rawApiDataToPlotlyReadyInfo = (view, office, data) => {
           rowItem = {
             'Fiscal Year': yearResults.fiscal_year,
             'Total Cases': yearResults.totalCases,
-            '% Granted': Number(yearResults.granted).toFixed(2),
-            '% Admin Close / Dismissal': Number(
-              yearResults.adminClosed
-            ).toFixed(2),
-            '% Denied': Number(yearResults.denied).toFixed(2),
+            'Granted Rate': Number(yearResults.granted).toFixed(2),
+            Grants: yearResults.totalGranted,
+            'Admin Closed/Dismissals': Number(yearResults.adminClosed).toFixed(
+              2
+            ),
+            'Referrals/Denials': Number(yearResults.denied).toFixed(2),
           };
           rowsForAllDisplay.push(rowItem);
         }

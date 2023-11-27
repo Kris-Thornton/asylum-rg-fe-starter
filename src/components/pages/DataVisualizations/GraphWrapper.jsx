@@ -56,7 +56,8 @@ function GraphWrapper(props) {
         break;
     }
   }
-
+  // Created a function to access the main API link while passing in the dataType param
+  // that endpoints can be used in the callback below.
   async function asylumData(dataType) {
     const response = await axios.get(
       `https://hrf-asylum-be-b.herokuapp.com/cases/${dataType}`
@@ -64,9 +65,6 @@ function GraphWrapper(props) {
     console.log(response.data);
     return response.data;
   }
-
-  // Created a function to access the main API link while passing in the dataType param
-  // that endpoints can be used in the callback below.
 
   async function updateStateWithNewData(stateSettingCallback) {
     try {
