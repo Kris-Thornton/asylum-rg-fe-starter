@@ -62,7 +62,7 @@ function GraphWrapper(props) {
     const response = await axios.get(
       `https://hrf-asylum-be-b.herokuapp.com/cases/${dataType}`
     );
-    console.log(response.data);
+
     return response.data;
   }
 
