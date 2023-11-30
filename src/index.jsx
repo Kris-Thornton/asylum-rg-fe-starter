@@ -7,6 +7,8 @@ import {
   Switch,
 } from 'react-router-dom';
 
+import { Auth0ProviderWithNavigate } from './auth0-provider-with-navigate';
+
 import 'antd/dist/antd.less';
 import { NotFoundPage } from './components/pages/NotFound';
 import { LandingPage } from './components/pages/Landing';
@@ -25,14 +27,18 @@ import { colors } from './styles/data_vis_colors';
 
 const { primary_accent_color } = colors;
 
+// Wrapping Auth provider around router or browser router to pass down the Auth0 mechanism to the rest of the application.
+
 const store = configureStore({ reducer: reducer });
 ReactDOM.render(
   <Router>
-    <Provider store={store}>
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>
-    </Provider>
+    <Auth0ProviderWithNavigate>
+      <Provider store={store}>
+        <React.StrictMode>
+          <App />
+        </React.StrictMode>
+      </Provider>
+    </Auth0ProviderWithNavigate>
   </Router>,
   document.getElementById('root')
 );
