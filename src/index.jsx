@@ -7,7 +7,7 @@ import {
   Switch,
 } from 'react-router-dom';
 
-import { Auth0ProviderWithNavigate } from './auth0-provider-with-navigate';
+// import { Auth0ProviderWithNavigate } from './auth0-provider-with-navigate';
 
 import 'antd/dist/antd.less';
 import { NotFoundPage } from './components/pages/NotFound';
@@ -32,13 +32,13 @@ const { primary_accent_color } = colors;
 const store = configureStore({ reducer: reducer });
 ReactDOM.render(
   <Router>
-    <Auth0ProviderWithNavigate>
-      <Provider store={store}>
-        <React.StrictMode>
-          <App />
-        </React.StrictMode>
-      </Provider>
-    </Auth0ProviderWithNavigate>
+    {/* <Auth0ProviderWithNavigate> */}
+    <Provider store={store}>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </Provider>
+    {/* </Auth0ProviderWithNavigate> */}
   </Router>,
   document.getElementById('root')
 );
