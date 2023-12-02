@@ -7,12 +7,13 @@ import {
   Switch,
 } from 'react-router-dom';
 
-// import { Auth0ProviderWithNavigate } from './auth0-provider-with-navigate';
+// was using Auth0ProviderWithNavigate as said in documentation, however kept getting an error and figured out it had to do with version of react-router-dom.
+// import { Auth0ProviderWithHistory } from './auth0-provider-with-History';
 
 import 'antd/dist/antd.less';
 import { NotFoundPage } from './components/pages/NotFound';
 import { LandingPage } from './components/pages/Landing';
-
+import { Profile } from './authO/Auth0-Profile';
 import { FooterContent, SubFooter } from './components/Layout/Footer';
 import { HeaderContent } from './components/Layout/Header';
 
@@ -32,13 +33,13 @@ const { primary_accent_color } = colors;
 const store = configureStore({ reducer: reducer });
 ReactDOM.render(
   <Router>
-    {/* <Auth0ProviderWithNavigate> */}
+    {/* <Auth0ProviderWithHistory> */}
     <Provider store={store}>
       <React.StrictMode>
         <App />
       </React.StrictMode>
     </Provider>
-    {/* </Auth0ProviderWithNavigate> */}
+    {/* </Auth0ProviderWithHistory> */}
   </Router>,
   document.getElementById('root')
 );
@@ -60,6 +61,7 @@ export function App() {
       <Switch>
         <Route path="/" exact component={LandingPage} />
         <Route path="/graphs" component={GraphsContainer} />
+        <Route path="/profile" component={Profile} />
         <Route component={NotFoundPage} />
       </Switch>
       <Footer
