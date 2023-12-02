@@ -15,10 +15,12 @@ export const Profile = user => {
             height={'150'}
             width={'150'}
           />
-          <h3>First Name {firstName}</h3>
-          <h3>Last Name {lastName}</h3>
-          <h6>Email.... {email}</h6>
-          <h6>Age {age}</h6>
+          <div className="inputInfo">
+            <h3>First Name {firstName}</h3>
+            <h3>Last Name {lastName}</h3>
+            <h6>Email.... {email}</h6>
+            <h6>Age {age}</h6>
+          </div>
 
           <div className="skills">
             <h4>Example Skills</h4>
