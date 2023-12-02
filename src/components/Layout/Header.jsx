@@ -6,6 +6,7 @@ import { colors } from '../../styles/data_vis_colors';
 
 import LoginButton from '../../authO/Auth0-Buttons/Auth0-loginButton';
 import LogoutButton from '../../authO/Auth0-Buttons/Auth0-logoutButton';
+import SignupButton from '../../authO/Auth0-Buttons/Auth0-signupButton';
 const { primary_accent_color } = colors;
 
 function HeaderContent() {
@@ -24,12 +25,15 @@ function HeaderContent() {
         </a>
       </div>
       <div>
-        <Link to="/" style={{ color: '#E2F0F7', paddingRight: '75px' }}>
+        <Link to="/" style={{ color: '#E2F0F7', paddingRight: '10px' }}>
           Home
         </Link>
         <Link to="/graphs" style={{ color: '#E2F0F7' }}>
           Graphs
         </Link>
+
+        <SignupButton />
+
         <LoginButton />
         <LogoutButton />
       </div>
