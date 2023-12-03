@@ -3,10 +3,8 @@ import { Image } from 'antd';
 import { Link } from 'react-router-dom';
 import Logo from '../../styles/Images/WhiteLogo.png';
 import { colors } from '../../styles/data_vis_colors';
+import SignupAuth0 from '../../authO/Auth0-Connectors/Auth0-signupConnector';
 
-import LoginButton from '../../authO/Auth0-Buttons/Auth0-loginButton';
-import LogoutButton from '../../authO/Auth0-Buttons/Auth0-logoutButton';
-import SignupButton from '../../authO/Auth0-Buttons/Auth0-signupButton';
 const { primary_accent_color } = colors;
 
 function HeaderContent() {
@@ -32,10 +30,7 @@ function HeaderContent() {
           Graphs
         </Link>
 
-        <SignupButton />
-
-        <LoginButton />
-        <LogoutButton />
+        <SignupAuth0 />
       </div>
     </div>
   );

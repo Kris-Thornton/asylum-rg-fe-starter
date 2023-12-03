@@ -8,7 +8,7 @@ import {
 } from 'react-router-dom';
 
 // was using Auth0ProviderWithNavigate as said in documentation, however kept getting an error and figured out it had to do with version of react-router-dom.
-// import { Auth0ProviderWithHistory } from './auth0-provider-with-History';
+import { Auth0ProviderWithHistory } from './authO/Auth0-Connectors/auth0-provider-with-history';
 
 import 'antd/dist/antd.less';
 import { NotFoundPage } from './components/pages/NotFound';
@@ -33,13 +33,13 @@ const { primary_accent_color } = colors;
 const store = configureStore({ reducer: reducer });
 ReactDOM.render(
   <Router>
-    {/* <Auth0ProviderWithHistory> */}
-    <Provider store={store}>
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>
-    </Provider>
-    {/* </Auth0ProviderWithHistory> */}
+    <Auth0ProviderWithHistory>
+      <Provider store={store}>
+        <React.StrictMode>
+          <App />
+        </React.StrictMode>
+      </Provider>
+    </Auth0ProviderWithHistory>
   </Router>,
   document.getElementById('root')
 );

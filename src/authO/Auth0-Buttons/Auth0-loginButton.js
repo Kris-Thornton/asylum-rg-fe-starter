@@ -1,14 +1,16 @@
 import React from 'react';
-
-import { useHistory } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react';
 import '../../styles/RenderLandingPage.less';
 
 const LoginButton = () => {
-  let history = useHistory();
+  const { loginWithRedirect } = useAuth0();
 
-  const handleLogin = () => {
-    let path = '/profile';
-    history.push(path);
+  const handleLogin = async () => {
+    await loginWithRedirect({
+      appState: {
+        returnTo: '/profile',
+      },
+    });
   };
 
   return (

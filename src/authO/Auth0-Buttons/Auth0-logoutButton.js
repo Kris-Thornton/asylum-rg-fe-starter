@@ -1,17 +1,18 @@
+import { useAuth0 } from '@auth0/auth0-react';
 import React from 'react';
-import { useHistory } from 'react-router-dom';
 
 const LogoutButton = () => {
-  let history = useHistory();
+  const { logout } = useAuth0();
 
   const handleLogout = () => {
-    let path = '/';
-    history.push(path);
+    logout({
+      returnTo: window.location.origin,
+    });
   };
 
   return (
     <button className="auth0button" onClick={handleLogout}>
-      Log out
+      Log Out
     </button>
   );
 };
