@@ -3,8 +3,8 @@ import { Image } from 'antd';
 import { Link } from 'react-router-dom';
 import Logo from '../../styles/Images/WhiteLogo.png';
 import { colors } from '../../styles/data_vis_colors';
-import SignupAuth0 from '../../authO/Auth0-Connectors/Auth0-signupConnector';
-
+import SignupAuth0 from '../../authO/Auth0-Connectors/Auth0-signup-Connector';
+import LoginLogoutAuth0 from '../../authO/Auth0-Connectors/Auth0-login-logout-Connector';
 const { primary_accent_color } = colors;
 
 function HeaderContent() {
@@ -29,7 +29,7 @@ function HeaderContent() {
         <Link to="/graphs" style={{ color: '#E2F0F7' }}>
           Graphs
         </Link>
-
+        <LoginLogoutAuth0 />
         <SignupAuth0 />
       </div>
     </div>
