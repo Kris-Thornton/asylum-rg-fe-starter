@@ -18,6 +18,7 @@ import { FooterContent, SubFooter } from './components/Layout/Footer';
 import { HeaderContent } from './components/Layout/Header';
 
 // import { TablePage } from './components/pages/Table';
+import { AuthenticationGuard } from './authO/Auth0-Connectors/authentication-guard';
 
 import { Layout } from 'antd';
 import GraphsContainer from './components/pages/DataVisualizations/GraphsContainer';
@@ -61,7 +62,10 @@ export function App() {
       <Switch>
         <Route path="/" exact component={LandingPage} />
         <Route path="/graphs" component={GraphsContainer} />
-        <Route path="/profile" component={Profile} />
+        <Route
+          path="/profile"
+          element={<AuthenticationGuard component={Profile} />}
+        />
         <Route component={NotFoundPage} />
       </Switch>
       <Footer

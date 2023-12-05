@@ -5,8 +5,8 @@ import '../../styles/RenderLandingPage.less';
 const LoginButton = () => {
   const { loginWithRedirect } = useAuth0();
 
-  const handleLogin = async () => {
-    await loginWithRedirect({
+  const handleLogin = () => {
+    loginWithRedirect({
       appState: {
         returnTo: '/profile',
       },
